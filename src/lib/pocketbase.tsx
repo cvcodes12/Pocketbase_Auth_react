@@ -1,4 +1,5 @@
 import PocketBase from 'pocketbase';
+import { string } from 'zod';
 
 type AuthForm = {
     email: string,
@@ -7,7 +8,9 @@ type AuthForm = {
     name:string,
 }
 
-const pb = new PocketBase('http://127.0.0.1:8090');
+const url = import.meta.env.VITE_POCKET_URL;
+
+const pb = new PocketBase(url);
 
 export const isUserValid = pb.authStore.isValid; 
 
